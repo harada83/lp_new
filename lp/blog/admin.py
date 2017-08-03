@@ -7,13 +7,18 @@ from .models import Post
 
 # class PostInline(admin.StackedInline):
 # 	model = Post
-# 	extra = 2
+# 	extra = 0
 # 	fk_name = 'author'
 
 
 class PostAdmin(admin.ModelAdmin):
-	fields = ['author','title', 'text', 'post_image',] 
-	# inlines = [PostInline,]
+	list_display = ['id', 'title', 'author','published_date']
+	list_display_links = ['id', 'title']
+	#exclude = ["text"]
+	#fields = ['author','title', 'text', 'post_image',] 
+	#inlines = [PostInline]
 	# list_fiter = ['post_date']
+	class Meta:
+		model = Post
 
 admin.site.register(Post, PostAdmin)
